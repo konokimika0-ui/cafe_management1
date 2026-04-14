@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="title">商品登録</h2>
+
+<form action="/products/store" method="POST" class="form-card">
+
+    <div class="form-group">
+        <label>商品名</label>
+        <input type="text" name="name" required>
+    </div>
+
+    <div class="form-group">
+        <label>説明</label>
+        <textarea name="description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>価格</label>
+        <input type="number" name="price" required>
+    </div>
+
+    <div class="form-group">
+        <label>SKU</label>
+        <input type="text" name="sku">
+    </div>
+
+    <button type="submit">登録する</button>
+
+</form>
+
+{% endblock %}
