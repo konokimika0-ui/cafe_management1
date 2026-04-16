@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品編集</title>
+</head>
+<body>
+    <h1>商品編集</h1>
+
+    <form method="POST">
+        <p>
+            商品名：
+            <input type="text" name="name" value="{{ product['name'] }}">
+        </p>
+        <p>
+            価格：
+            <input type="number" name="price" value="{{ product['price'] }}">
+        </p>
+        <p>
+            在庫：
+            <input type="number" name="stock" value="{{ product['stock'] }}">
+        </p>
+        <p>
+            <button type="submit">更新</button>
+        </p>
+    </form>
+
+    <a href="/">一覧に戻る</a>
+</body>
+</html>

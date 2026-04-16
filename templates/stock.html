@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>入出庫</title>
+</head>
+<body>
+    <h1>入出庫登録</h1>
+
+   {% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %} 
+
+    <form method="POST">
+        <p>
+            商品：
+            <select name="product_id">
+                {% for product in products %}
+            <option value="{{ product['id'] }}"
+                {% if product['id'] == selected_product_id %}
+                    selected
+                {% endif %}
+>
+                {{ product['name'] }}
+            </option>    
+                {% endfor %}
+            </select>
+        </p>
+
+        <p>
+            種類：
+            <select name="type">
+                <option value="in">入庫</option>
+                <option value="out">出庫</option>
+            </select>
+        </p>
+
+        <p>
+            数量：
+            <input type="number" name="quantity">
+        </p>
+
+        <button type="submit">登録</button>
+    </form>
+
+    <a href="/">一覧に戻る</a>
+</body>
+</html>

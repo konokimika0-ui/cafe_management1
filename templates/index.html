@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>在庫一覧</title>
+</head>
+<body>
+
+    <h1>在庫一覧</h1>
+
+    <!-- 👇ここに追加（重要） -->
+    <a href="/create">商品を追加</a>
+    <a href="/stock">入出庫登録</a>
+    <a href="/history">履歴一覧</a>
+
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>商品名</th>
+            <th>価格</th>
+            <th>在庫</th>
+            <th>操作</th>
+        </tr>
+
+        {% for product in products %}
+        <tr>
+            <td>{{ product['id'] }}</td>
+            <td>{{ product['name'] }}</td>
+            <td>{{ product['price'] }}</td>
+            <td>{{ product['stock'] }}</td>
+
+            <td>
+                <a href="/edit/{{ product['id'] }}">編集</a>
+                <a href="/delete/{{ product['id'] }}" onclick="return confirm('削除しますか？')">削除</a>
+            </td>       
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

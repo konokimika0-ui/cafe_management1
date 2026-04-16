@@ -1,33 +1,26 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品追加</title>
+</head>
+<body>
+    <h1>商品追加</h1>
 
-{% block content %}
+    <form method="POST">
+        <p>
+            商品名：<input type="text" name="name">
+        </p>
+        <p>
+            価格：<input type="number" name="price">
+        </p>
+        <p>
+            在庫：<input type="number" name="stock">
+        </p>
+        <p>
+            <button type="submit">登録</button>
+        </p>
+    </form>
 
-<h2 class="title">商品登録</h2>
-
-<form action="/products/store" method="POST" class="form-card">
-
-    <div class="form-group">
-        <label>商品名</label>
-        <input type="text" name="name" required>
-    </div>
-
-    <div class="form-group">
-        <label>説明</label>
-        <textarea name="description"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label>価格</label>
-        <input type="number" name="price" required>
-    </div>
-
-    <div class="form-group">
-        <label>SKU</label>
-        <input type="text" name="sku">
-    </div>
-
-    <button type="submit">登録する</button>
-
-</form>
-
-{% endblock %}
+    <a href="/">一覧に戻る</a>
+</body>
+</html>
