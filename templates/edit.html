@@ -20,6 +20,15 @@
             <input type="number" name="stock" value="{{ product['stock'] }}">
         </p>
         <p>
+         <p>
+    カテゴリ：
+    <select name="category">
+        <option value="ドリンク" {{ 'selected' if product['category'] == 'ドリンク' }}>🥤 ドリンク</option>
+        <option value="フード" {{ 'selected' if product['category'] == 'フード' }}>🍰 フード</option>
+        <option value="豆・茶葉" {{ 'selected' if product['category'] == '豆・茶葉' }}>🫘 豆・茶葉</option>
+        <option value="その他" {{ 'selected' if product['category'] == 'その他' }}>📦 その他</option>
+    </select>
+</p>   
             <button type="submit">更新</button>
         </p>
     </form>

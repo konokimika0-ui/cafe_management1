@@ -2,42 +2,109 @@
 <html>
 <head>
     <title>在庫一覧</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* カフェ風のカスタマイズ */
+        body {
+            background-color: #f8f5f0;
+            color: #4e342e;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 50px;
+        }
+        .btn-cafe {
+            background-color: #8d6e63;
+            color: white;
+            border-radius: 20px;
+        }
+        .btn-cafe:hover {
+            background-color: #6d4c41;
+            color: white;
+        }
+        .table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .table tr {
+            background-color: #fff;
+            vertical-align: middle;
+        }
+        .badge-stock {
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1 class="text-center mb-4" style="color: #6d4c41; font-weight: bold;">☕ カフェ在庫管理</h1>
 
-    <h1>在庫一覧</h1>
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8">
+                <form action="/" method="get" class="d-flex shadow-sm" style="border-radius: 25px; overflow: hidden; background: white;">
+                    <select name="category" class="form-select border-0" style="width: 150px; background-color: #fdfaf5; color: #6d4c41; border-radius: 0;">
+                        <option value="">全カテゴリ</option>
+                        <option value="ドリンク" {{ 'selected' if category_query == 'ドリンク' }}>🥤 ドリンク</option>
+                        <option value="フード" {{ 'selected' if category_query == 'フード' }}>🍰 フード</option>
+                        <option value="豆・茶葉" {{ 'selected' if category_query == '豆・茶葉' }}>🫘 豆・茶葉</option>
+                        <option value="その他" {{ 'selected' if category_query == 'その他' }}>📦 その他</option>
+                    </select>
+                    
+                    <input type="text" name="search" class="form-control border-0 px-4" 
+                           placeholder="商品名で検索..." value="{{ search_query }}">
+                    
+                    <button type="submit" class="btn btn-cafe px-4" style="border-radius: 0;">🔍</button>
+                </form>
+                {% if search_query or category_query %}
+                    <div class="text-center mt-2">
+                        <a href="/" class="text-secondary small">検索をクリア</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
 
+        <div class="text-center mb-4">
+            <a href="/create" class="btn btn-cafe shadow-sm me-2">＋ 商品を追加</a>
+            <a href="/stock" class="btn btn-outline-secondary shadow-sm me-2">入出庫の記録</a>
+            <a href="/history" class="btn btn-outline-secondary shadow-sm">履歴をみる</a>
+        </div>
 
-    <!-- 👇ここに追加（重要） -->
-    <a href="/create">商品を追加</a>
-    <a href="/stock">入出庫登録</a>
-    <a href="/history">履歴一覧</a>
-
-    <br><br>
-
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>商品名</th>
-            <th>価格</th>
-            <th>在庫</th>
-            <th>操作</th>
-        </tr>
-
-        {% for product in products %}
-        <tr>
-            <td>{{ product['id'] }}</td>
-            <td>{{ product['name'] }}</td>
-            <td>{{ product['price'] }}</td>
-            <td>{{ product['stock'] }}</td>
-
-            <td>
-                <a href="/edit/{{ product['id'] }}">編集</a>
-                <a href="/delete/{{ product['id'] }}" onclick="return confirm('削除しますか？')">削除</a>
-            </td>       
-        </tr>
-        {% endfor %}
-    </table>
-
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th class="ps-3">ID</th>
+                    <th>商品名</th>
+                    <th>カテゴリ</th> <th class="text-end">価格</th>
+                    <th class="text-center">在庫</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr class="shadow-sm">
+                    <td class="ps-3 text-secondary">#{{ product.id }}</td>
+                    <td class="fw-bold">{{ product.name }}</td>
+                    <td><span class="badge bg-light text-dark border fw-normal">{{ product.category }}</span></td>
+                    <td class="text-end">¥{{ product.price }}</td>
+                    <td class="text-center">
+                        <span class="badge {{ 'bg-danger' if product.stock <= 3 else 'bg-success' }} badge-stock">
+                            {{ product.stock }}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ url_for('edit', id=product.id) }}" class="text-decoration-none me-3">✏️ 編集</a>
+                        <a href="{{ url_for('delete', id=product.id) }}" class="text-decoration-none text-danger" 
+                           onclick="return confirm('本当に「{{ product.name }}」を削除しますか？');">🗑️ 削除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
