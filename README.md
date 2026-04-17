@@ -4,7 +4,9 @@
 Flaskを使用したカフェの在庫管理システムです。商品の追加、編集、削除、および入出庫の記録が可能です。
 
 ## スクリーンショット
-![在庫一覧画面](static/screenshot.png)
+<div align="left">
+  <img src="screenshot%20(2).png?v=1" width="400">
+</div>
 
 ## 使い方
 1. 必要なライブラリをインストールします。
