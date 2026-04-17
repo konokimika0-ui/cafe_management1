@@ -5,9 +5,8 @@ Flaskを使用したカフェの在庫管理システムです。商品の追加
 
 ## スクリーンショット
 <div align="left">
-  <img src="screenshot%20(2).png?v=1" width="400">
+  <img src="static/screenshot.png?v=10" width="400">
 </div>
-
 ## 使い方
 1. 必要なライブラリをインストールします。
 2. python app.py を実行します。
