@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録 - カフェ在庫管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f5f0; color: #4e342e; }
+        .register-card { border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background-color: white; padding: 40px; margin-top: 50px; }
+        .btn-cafe { background-color: #8d6e63; color: white; border-radius: 25px; }
+        .btn-cafe:hover { background-color: #6d4c41; color: white; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="register-card">
+                <h2 class="text-center mb-4 fw-bold" style="color: #6d4c41;">🍃 新規ユーザー登録</h2>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">ユーザー名</label>
+                        <input type="text" name="username" class="form-control" placeholder="お好きな名前" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold">パスワード</label>
+                        <input type="password" name="password" class="form-control" placeholder="パスワードを設定" required>
+                    </div>
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-cafe btn-lg">登録する</button>
+                    </div>
+                    <div class="text-center">
+                        <a href="/login" class="small text-decoration-none text-secondary">すでにアカウントをお持ちの方（ログインへ）</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

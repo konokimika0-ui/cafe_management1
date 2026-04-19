@@ -1,48 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <title>商品追加</title>
+    <meta charset="UTF-8">
+    <title>商品追加 - カフェ在庫管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f5f0;
+            color: #4e342e;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+        }
+        .card-custom {
+            background-color: #ffffff;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 50px;
+        }
+        .btn-cafe {
+            background-color: #8d6e63;
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 30px;
+        }
+        .btn-cafe:hover {
+            background-color: #6d4c41;
+            color: white;
+        }
+        .form-label {
+            color: #6d4c41;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>商品追加</h1>
 
-    <form method="POST">
-        <p>
-            商品名：<input type="text" name="name">
-        </p>
-        <p>
-            価格：<input type="number" name="price">
-        </p>
-        <p>
-            在庫：<input type="number" name="stock">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-custom p-4">
+                <h1 class="text-center mb-4" style="color: #6d4c41; font-weight: bold;">📝 商品追加</h1>
+                
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label small">商品名</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="例: アイスコーヒー" required>
+                    </div>
 
-            <div class="mb-3">
-    <label class="form-label">カテゴリ</label>
-    <select name="category" class="form-select" required style="border-radius: 10px;">
-        <option value="" disabled selected>選択してください</option>
-        <option value="ドリンク">🥤 ドリンク</option>
-        <option value="フード">🍰 フード</option>
-        <option value="豆・茶葉">🫘 豆・茶葉</option>
-        <option value="その他">📦 その他</option>
-    </select>
+                    <div class="mb-3">
+                        <label for="price" class="form-label small">価格 (¥)</label>
+                        <input type="number" class="form-control" id="price" name="price" placeholder="500" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="stock" class="form-label small">初期在庫数</label>
+                        <input type="number" class="form-control" id="stock" name="stock" placeholder="10" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="category" class="form-label small">カテゴリ</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="" disabled selected>選択してください</option>
+                            <option value="ドリンク">🥤 ドリンク</option>
+                            <option value="フード">🍰 フード</option>
+                            <option value="豆・茶葉">🫘 豆・茶葉</option>
+                            <option value="その他">📦 その他</option>
+                        </select>
+                    </div>
+
+                    <div class="text-center d-grid gap-2">
+                        <button type="submit" class="btn btn-cafe">登録する</button>
+                        <a href="/" class="btn btn-link text-secondary text-decoration-none small">一覧に戻る</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
-           <div class="mb-3">
-    <label class="form-label">カテゴリ</label>
-    <select name="category" class="form-select" required style="border-radius: 10px;">
-        <option value="" disabled selected>選択してください</option>
-        <option value="ドリンク">🥤 ドリンク</option>
-        <option value="フード">🍰 フード</option>
-        <option value="豆・茶葉">🫘 豆・茶葉</option>
-        <option value="その他">📦 その他</option>
-    </select>
-</div> 
-        </p>
-        <p>
-            <button type="submit">登録</button>
-        </p>
-    </form>
-
-    <a href="/">一覧に戻る</a>
 </body>
 </html>

@@ -41,7 +41,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container">+
         <h1 class="text-center mb-4" style="color: #6d4c41; font-weight: bold;">☕ カフェ在庫管理</h1>
 
         <div class="row justify-content-center mb-4">
@@ -72,6 +72,8 @@
             <a href="/create" class="btn btn-cafe shadow-sm me-2">＋ 商品を追加</a>
             <a href="/stock" class="btn btn-outline-secondary shadow-sm me-2">入出庫の記録</a>
             <a href="/history" class="btn btn-outline-secondary shadow-sm">履歴をみる</a>
+
+           <a href="/logout" class="btn btn-outline-danger shadow-sm">ログアウト</a> 
         </div>
 
         <table class="table align-middle">
@@ -98,13 +100,36 @@
                     </td>
                     <td class="text-center">
                         <a href="{{ url_for('edit', id=product.id) }}" class="text-decoration-none me-3">✏️ 編集</a>
-                        <a href="{{ url_for('delete', id=product.id) }}" class="text-decoration-none text-danger" 
-                           onclick="return confirm('本当に「{{ product.name }}」を削除しますか？');">🗑️ 削除</a>
+<button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('{{ product.id }}', '{{ product.name }}')">
+    削除
+</button>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function confirmDelete(id, name) {
+    Swal.fire({
+        title: '本当に削除しますか？',
+        text: "「" + name + "」を削除すると元に戻せません！",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',          // 削除ボタンの色（赤）
+        cancelButtonColor: '#8d6e63',        // キャンセルボタンの色（カフェ色）
+        confirmButtonText: '削除する',
+        cancelButtonText: 'キャンセル',
+        borderRadius: '15px'                 // 角を丸くしてカフェ風に
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 「削除する」が押された時だけ、実際の削除URLへ移動します
+            window.location.href = "/delete/" + id;
+        }
+    })
+}
+</script>
 </body>
 </html>

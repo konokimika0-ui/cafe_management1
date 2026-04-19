@@ -1,38 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <title>商品編集</title>
+    <meta charset="UTF-8">
+    <title>商品編集 - カフェ在庫管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f5f0; color: #4e342e; }
+        .card { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .btn-cafe { background-color: #8d6e63; color: white; border-radius: 25px; }
+        .btn-cafe:hover { background-color: #6d4c41; color: white; }
+        .form-label { font-weight: bold; color: #6d4c41; }
+    </style>
 </head>
 <body>
-    <h1>商品編集</h1>
-
-    <form method="POST">
-        <p>
-            商品名：
-            <input type="text" name="name" value="{{ product['name'] }}">
-        </p>
-        <p>
-            価格：
-            <input type="number" name="price" value="{{ product['price'] }}">
-        </p>
-        <p>
-            在庫：
-            <input type="number" name="stock" value="{{ product['stock'] }}">
-        </p>
-        <p>
-         <p>
-    カテゴリ：
-    <select name="category">
-        <option value="ドリンク" {{ 'selected' if product['category'] == 'ドリンク' }}>🥤 ドリンク</option>
-        <option value="フード" {{ 'selected' if product['category'] == 'フード' }}>🍰 フード</option>
-        <option value="豆・茶葉" {{ 'selected' if product['category'] == '豆・茶葉' }}>🫘 豆・茶葉</option>
-        <option value="その他" {{ 'selected' if product['category'] == 'その他' }}>📦 その他</option>
-    </select>
-</p>   
-            <button type="submit">更新</button>
-        </p>
-    </form>
-
-    <a href="/">一覧に戻る</a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h2 class="h4 mb-4 fw-bold text-center">☕ 商品情報の編集</h2>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">商品名</label>
+                        <input type="text" name="name" class="form-control" value="{{ product['name'] }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">価格 (円)</label>
+                        <input type="number" name="price" class="form-control" value="{{ product['price'] }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">在庫数</label>
+                        <input type="number" name="stock" class="form-control" value="{{ product['stock'] }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">カテゴリ</label>
+                        <select name="category" class="form-select">
+                            <option value="ドリンク" {% if product['category'] == 'ドリンク' %}selected{% endif %}>☕ ドリンク</option>
+                            <option value="フード" {% if product['category'] == 'フード' %}selected{% endif %}>🍰 フード</option>
+                            <option value="茶葉" {% if product['category'] == '茶葉' %}selected{% endif %}>🍃 茶葉</option>
+                        </select>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-cafe">更新する</button>
+                        <a href="/" class="btn btn-outline-secondary border-0">キャンセルして戻る</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
